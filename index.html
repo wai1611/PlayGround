@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#101813">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  <title>90 minutos — Simulador de fútbol</title>
+  <title>90 minutos — Mi carrera</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700;800&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
@@ -14,33 +14,55 @@
 <body>
   <div class="app-shell">
     <header class="topbar">
-      <a class="brand" href="#" aria-label="90 minutos, inicio"><span class="brand-mark">90</span><span>MINUTOS<span class="brand-dot">.</span></span></a>
-      <div class="top-meta"><span class="live-dot"></span><span>SIMULADOR DE PARTIDO</span><span class="top-divider">/</span><span id="matchday">JORNADA 01</span></div>
+      <a class="brand" href="#" aria-label="90 minutos, inicio"><span class="brand-mark">90</span><span>MI CARRERA<span class="brand-dot">.</span></span></a>
+      <div class="top-meta"><span class="live-dot"></span><span>MODO CARRERA</span><span class="top-divider">/</span><span id="matchday">TEMPORADA 01</span></div>
       <button class="icon-button" id="sound-toggle" type="button" aria-label="Activar o desactivar sonidos" title="Sonido desactivado">♫<span class="sound-slash"></span></button>
     </header>
 
     <main>
       <section class="intro-row">
-        <div><p class="eyebrow">EL FÚTBOL, DECISIÓN A DECISIÓN</p><h1>Un partido.<br><em>Noventa minutos.</em></h1></div>
-        <p class="intro-copy">Lee el partido, ajusta tu plan y elige cuándo arriesgar. Cada jugada se decide en el campo; el resultado, también.</p>
+        <div><p class="eyebrow">TU HISTORIA EMPIEZA AQUÍ</p><h1>De promesa a<br><em>leyenda del fútbol.</em></h1></div>
+        <p class="intro-copy">Crea a tu jugador, gánate un lugar en el once y construye tu carrera partido a partido. Tus decisiones y tu rendimiento marcan el camino.</p>
       </section>
 
-      <section class="match-card" aria-label="Marcador del partido">
-        <div class="match-context"><span id="competition-label">LIGA NACIONAL · FECHA 1</span><span id="match-status" class="status-pill">ANTES DEL PARTIDO</span></div>
+      <section class="match-card" aria-label="Próximo partido">
+        <div class="match-context"><span id="competition-label">LIGA NACIONAL · FECHA 1</span><span id="match-status" class="status-pill">TU CARRERA</span></div>
         <div class="scoreboard">
-          <div class="team-block home-team"><div class="crest crest-home" id="home-crest">R</div><div><span class="team-side">LOCAL</span><h2 id="home-name">Racing del Puerto</h2><span class="team-record" id="home-record">Fundado para competir</span></div></div>
+          <div class="team-block home-team"><div class="crest crest-home" id="home-crest">R</div><div><span class="team-side">TU CLUB</span><h2 id="home-name">Elige tu destino</h2><span class="team-record" id="home-record">Crea tu jugador para empezar</span></div></div>
           <div class="score-center"><div class="score-line"><span id="home-score">0</span><span class="score-colon">:</span><span id="away-score">0</span></div><div class="match-clock" id="clock">— : —</div></div>
-          <div class="team-block away-team"><div><span class="team-side">VISITANTE</span><h2 id="away-name">Atlético Serrano</h2><span class="team-record" id="away-record">Fundado para competir</span></div><div class="crest crest-away" id="away-crest">A</div></div>
+          <div class="team-block away-team"><div><span class="team-side">RIVAL</span><h2 id="away-name">Liga Nacional</h2><span class="team-record" id="away-record">La próxima prueba te espera</span></div><div class="crest crest-away" id="away-crest">?</div></div>
         </div>
-        <div class="score-footer"><span id="stadium">ESTADIO DEL PUERTO</span><span id="weather">NOCHE · CÉSPED EN BUEN ESTADO</span></div>
+        <div class="score-footer"><span id="stadium">ELIGE UN CLUB</span><span id="weather">UNA CARRERA POR ESCRIBIR</span></div>
       </section>
 
-      <section id="setup-panel" class="setup-panel">
-        <div class="section-heading"><div><p class="eyebrow">PREPARACIÓN</p><h2>Tu equipo, tu plan</h2></div><span class="step-number">01 <i>/ 02</i></span></div>
-        <div class="setup-grid">
-          <label class="field-label">ELIGE TU EQUIPO<select id="team-select"></select></label>
-          <label class="field-label">ELIGE AL RIVAL<select id="opponent-select"></select></label>
+      <section id="career-create" class="setup-panel career-create">
+        <div class="section-heading"><div><p class="eyebrow">NUEVO COMIENZO</p><h2>Crea a tu jugador</h2></div><span class="step-number">01 <i>/ 02</i></span></div>
+        <p class="panel-intro">Elige tu identidad y el club que te dará la primera oportunidad. Tu progreso quedará guardado en este dispositivo.</p>
+        <div class="career-form">
+          <label class="field-label">NOMBRE DEL JUGADOR<input id="player-name-input" type="text" maxlength="24" placeholder="Ej. Alex García" autocomplete="given-name" required></label>
+          <label class="field-label">POSICIÓN<select id="player-position"><option value="Delantero">Delantero</option><option value="Extremo">Extremo</option><option value="Mediocampista">Mediocampista</option></select></label>
+          <label class="field-label">ESTILO DE JUEGO<select id="player-archetype"><option value="talento">Talento creativo</option><option value="velocidad">Velocidad y desborde</option><option value="definicion">Instinto goleador</option></select></label>
+          <label class="field-label">CLUB DE INICIO<select id="career-club"></select></label>
         </div>
+        <div id="archetype-description" class="archetype-note">Mejor control y pase decisivo. Un jugador técnico para crear ocasiones.</div>
+        <button id="create-career-button" class="primary-button" type="button"><span>Empezar mi carrera</span><span class="button-arrow">↗</span></button>
+        <p class="save-note">◇ Guardado automático · Puedes continuar donde lo dejaste</p>
+      </section>
+
+      <section id="career-hub" class="career-hub hidden">
+        <div class="career-profile-card">
+          <div class="avatar-badge" id="player-avatar">JG</div>
+          <div class="career-identity"><p class="eyebrow">TU JUGADOR · <span id="player-position-label">DELANTERO</span></p><h2 id="player-display-name">Jugador</h2><div class="xp-row"><span id="player-level">NIVEL 1</span><div class="xp-track"><span id="xp-bar"></span></div><span id="xp-label">0 / 100 XP</span></div></div>
+          <div class="overall-box"><strong id="player-overall">68</strong><span>MEDIA</span></div>
+        </div>
+        <div class="career-summary">
+          <div><span>CLUB</span><strong id="career-club-name">—</strong></div><div><span>PARTIDOS</span><strong id="career-apps">0</strong></div><div><span>GOLES</span><strong id="career-goals">0</strong></div><div><span>ASISTENCIAS</span><strong id="career-assists">0</strong></div>
+        </div>
+      </section>
+
+      <section id="setup-panel" class="setup-panel hidden">
+        <div class="section-heading"><div><p class="eyebrow">SIGUIENTE DESAFÍO</p><h2 id="fixture-title">Prepara tu debut</h2></div><span class="step-number">02 <i>/ 02</i></span></div>
+        <div class="fixture-callout"><span class="fixture-round" id="fixture-round">JORNADA 01</span><span id="fixture-copy">Demuestra que mereces un lugar en el equipo.</span></div>
         <div class="tactics-heading"><span class="field-label">ENFOQUE TÁCTICO</span><span class="tactics-hint">Puedes cambiarlo durante el partido</span></div>
         <div class="tactic-options" id="tactic-options">
           <button class="tactic-card selected" data-tactic="balanced" type="button"><span class="tactic-icon">◉</span><strong>Equilibrado</strong><small>Sin conceder demasiado. El plan más versátil.</small></button>
@@ -48,31 +70,26 @@
           <button class="tactic-card" data-tactic="counter" type="button"><span class="tactic-icon">⇢</span><strong>Contraataque</strong><small>Bloque bajo y salida veloz tras recuperar.</small></button>
           <button class="tactic-card" data-tactic="press" type="button"><span class="tactic-icon">⌁</span><strong>Presión alta</strong><small>Recuperar arriba, aunque cueste energía.</small></button>
         </div>
-        <button id="kickoff-button" class="primary-button" type="button"><span>Empezar el partido</span><span class="button-arrow">↗</span></button>
+        <button id="kickoff-button" class="primary-button" type="button"><span>Jugar mi próximo partido</span><span class="button-arrow">↗</span></button>
+        <button id="delete-career" class="text-button delete-career" type="button">BORRAR CARRERA Y EMPEZAR DE NUEVO</button>
       </section>
 
       <section id="game-layout" class="game-layout hidden">
         <div class="main-column">
           <div class="live-strip"><div><span class="live-pulse"></span><span id="live-label">PARTIDO EN JUEGO</span></div><span id="possession-label">POSESIÓN —</span></div>
-          <div class="pitch-card">
-            <div class="pitch-label"><span>MAPA DE JUEGO</span><span id="zone-label">—</span></div>
-            <div class="mini-pitch" aria-label="Representación esquemática de la zona de juego"><div class="pitch-half"></div><div class="pitch-midline"></div><div class="pitch-circle"></div><div class="pitch-box left-box"></div><div class="pitch-box right-box"></div><div id="ball-marker" class="ball-marker"><span>●</span></div><span class="pitch-end left-end">DEFENSA</span><span class="pitch-end right-end">ATAQUE</span></div>
-          </div>
-          <div class="feed-heading"><div><p class="eyebrow">RELATO EN DIRECTO</p><h2>Lo que pasa en el campo</h2></div><button id="clear-feed" class="text-button" type="button">LIMPIAR</button></div>
-          <div id="decision-panel" class="decision-panel hidden" aria-live="assertive"></div>
-          <div id="commentary-feed" class="commentary-feed" aria-live="polite" aria-label="Relato del partido"></div>
+          <div class="pitch-card"><div class="pitch-label"><span>MAPA DE JUEGO</span><span id="zone-label">—</span></div><div class="mini-pitch" aria-label="Representación esquemática de la zona de juego"><div class="pitch-half"></div><div class="pitch-midline"></div><div class="pitch-circle"></div><div class="pitch-box left-box"></div><div class="pitch-box right-box"></div><div id="ball-marker" class="ball-marker"><span>●</span></div><span class="pitch-end left-end">DEFENSA</span><span class="pitch-end right-end">ATAQUE</span></div></div>
+          <div class="feed-heading"><div><p class="eyebrow">RELATO EN DIRECTO</p><h2>Tu partido, tu historia</h2></div><button id="clear-feed" class="text-button" type="button">LIMPIAR</button></div>
+          <div id="decision-panel" class="decision-panel hidden" aria-live="assertive"></div><div id="commentary-feed" class="commentary-feed" aria-live="polite" aria-label="Relato del partido"></div>
           <div class="match-controls" id="match-controls"><button id="advance-button" class="primary-button advance-button" type="button"><span>Jugar siguiente minuto</span><span class="button-arrow">▶</span></button><button id="quick-button" class="secondary-button" type="button">+ 5 min</button></div>
         </div>
         <aside class="side-column">
-          <section class="side-card tactics-live"><div class="side-heading"><div><p class="eyebrow">DESDE EL BANQUILLO</p><h3>Plan de juego</h3></div><span class="tactic-live-badge" id="current-tactic-name">EQUILIBRADO</span></div><p class="side-description">Elige cómo quieres que juegue el equipo. El cambio se aplica a la siguiente posesión.</p><div class="live-tactic-list" id="live-tactic-list">
-            <button data-tactic="balanced" type="button"><span>Equilibrado</span><i>●</i></button><button data-tactic="possession" type="button"><span>Posesión</span><i>●</i></button><button data-tactic="counter" type="button"><span>Contraataque</span><i>●</i></button><button data-tactic="press" type="button"><span>Presión alta</span><i>●</i></button>
-          </div><div class="energy-wrap"><div><span>ENERGÍA DEL EQUIPO</span><b id="energy-value">100%</b></div><div class="energy-track"><span id="energy-bar"></span></div></div></section>
+          <section class="side-card tactics-live"><div class="side-heading"><div><p class="eyebrow">DESDE EL BANQUILLO</p><h3>Plan de juego</h3></div><span class="tactic-live-badge" id="current-tactic-name">EQUILIBRADO</span></div><p class="side-description">Elige cómo quieres que juegue el equipo. El cambio se aplica a la siguiente posesión.</p><div class="live-tactic-list" id="live-tactic-list"><button data-tactic="balanced" type="button"><span>Equilibrado</span><i>●</i></button><button data-tactic="possession" type="button"><span>Posesión</span><i>●</i></button><button data-tactic="counter" type="button"><span>Contraataque</span><i>●</i></button><button data-tactic="press" type="button"><span>Presión alta</span><i>●</i></button></div><div class="energy-wrap"><div><span>ENERGÍA DEL EQUIPO</span><b id="energy-value">100%</b></div><div class="energy-track"><span id="energy-bar"></span></div></div></section>
           <section class="side-card stats-card"><div class="side-heading"><div><p class="eyebrow">DATOS DEL PARTIDO</p><h3>Estadísticas</h3></div></div><div class="stat-table" id="stat-table"></div></section>
-          <section class="side-card key-players"><div class="side-heading"><div><p class="eyebrow">ONCE INICIAL</p><h3>Jugadores clave</h3></div></div><div id="players-list" class="players-list"></div></section>
+          <section class="side-card key-players"><div class="side-heading"><div><p class="eyebrow">TU ONCE</p><h3>Jugadores clave</h3></div></div><div id="players-list" class="players-list"></div></section>
         </aside>
       </section>
       <section id="fulltime-panel" class="fulltime-panel hidden"></section>
-      <footer class="page-footer"><span>FÚTBOL, SIN GUIÓN.</span><span>LOS PARTIDOS SE DECIDEN CON DATOS Y UN POCO DE AZAR.</span><button id="new-match" type="button">NUEVO PARTIDO ↗</button></footer>
+      <footer class="page-footer"><span>FÚTBOL, SIN GUIÓN.</span><span>UNA CARRERA. CADA PARTIDO CUENTA.</span><button id="new-match" type="button">VOLVER AL INICIO ↗</button></footer>
     </main>
   </div>
   <script src="game.js"></script>
