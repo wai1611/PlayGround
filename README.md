@@ -19,6 +19,6 @@
 
 ## 90 minutos
 
-Simulador de partidos de fútbol en español. Elige uno de cuatro clubes, prepara el enfoque táctico y juega el encuentro minuto a minuto. Cuando tu equipo llega al último tercio, decide entre filtrar un pase, centrar, encarar o disparar. Cambia el plan desde el banquillo y consulta posesión, remates, pases, faltas, tarjetas y goles esperados.
+Modo carrera de fútbol en español: crea a tu jugador, elige su posición, estilo y club de inicio, y disputa una liga partido a partido. En cada encuentro puedes cambiar el enfoque táctico, tomar decisiones en ataque y seguir el relato y las estadísticas en directo. Al finalizar, gana experiencia, sube de nivel y mejora la media de tu jugador. La carrera se guarda automáticamente en este dispositivo.
 
 Abre `index.html` en un navegador o inicia el servidor del entorno con `./start.sh`.
