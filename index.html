@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#101813">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <title>90 minutos — Simulador de fútbol</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700;800&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="90 minutos, inicio"><span class="brand-mark">90</span><span>MINUTOS<span class="brand-dot">.</span></span></a>
+      <div class="top-meta"><span class="live-dot"></span><span>SIMULADOR DE PARTIDO</span><span class="top-divider">/</span><span id="matchday">JORNADA 01</span></div>
+      <button class="icon-button" id="sound-toggle" type="button" aria-label="Activar o desactivar sonidos" title="Sonido desactivado">♫<span class="sound-slash"></span></button>
+    </header>
+
+    <main>
+      <section class="intro-row">
+        <div><p class="eyebrow">EL FÚTBOL, DECISIÓN A DECISIÓN</p><h1>Un partido.<br><em>Noventa minutos.</em></h1></div>
+        <p class="intro-copy">Lee el partido, ajusta tu plan y elige cuándo arriesgar. Cada jugada se decide en el campo; el resultado, también.</p>
+      </section>
+
+      <section class="match-card" aria-label="Marcador del partido">
+        <div class="match-context"><span id="competition-label">LIGA NACIONAL · FECHA 1</span><span id="match-status" class="status-pill">ANTES DEL PARTIDO</span></div>
+        <div class="scoreboard">
+          <div class="team-block home-team"><div class="crest crest-home" id="home-crest">R</div><div><span class="team-side">LOCAL</span><h2 id="home-name">Racing del Puerto</h2><span class="team-record" id="home-record">Fundado para competir</span></div></div>
+          <div class="score-center"><div class="score-line"><span id="home-score">0</span><span class="score-colon">:</span><span id="away-score">0</span></div><div class="match-clock" id="clock">— : —</div></div>
+          <div class="team-block away-team"><div><span class="team-side">VISITANTE</span><h2 id="away-name">Atlético Serrano</h2><span class="team-record" id="away-record">Fundado para competir</span></div><div class="crest crest-away" id="away-crest">A</div></div>
+        </div>
+        <div class="score-footer"><span id="stadium">ESTADIO DEL PUERTO</span><span id="weather">NOCHE · CÉSPED EN BUEN ESTADO</span></div>
+      </section>
+
+      <section id="setup-panel" class="setup-panel">
+        <div class="section-heading"><div><p class="eyebrow">PREPARACIÓN</p><h2>Tu equipo, tu plan</h2></div><span class="step-number">01 <i>/ 02</i></span></div>
+        <div class="setup-grid">
+          <label class="field-label">ELIGE TU EQUIPO<select id="team-select"></select></label>
+          <label class="field-label">ELIGE AL RIVAL<select id="opponent-select"></select></label>
+        </div>
+        <div class="tactics-heading"><span class="field-label">ENFOQUE TÁCTICO</span><span class="tactics-hint">Puedes cambiarlo durante el partido</span></div>
+        <div class="tactic-options" id="tactic-options">
+          <button class="tactic-card selected" data-tactic="balanced" type="button"><span class="tactic-icon">◉</span><strong>Equilibrado</strong><small>Sin conceder demasiado. El plan más versátil.</small></button>
+          <button class="tactic-card" data-tactic="possession" type="button"><span class="tactic-icon">↗</span><strong>Posesión</strong><small>Paciencia y pases cortos para encontrar espacios.</small></button>
+          <button class="tactic-card" data-tactic="counter" type="button"><span class="tactic-icon">⇢</span><strong>Contraataque</strong><small>Bloque bajo y salida veloz tras recuperar.</small></button>
+          <button class="tactic-card" data-tactic="press" type="button"><span class="tactic-icon">⌁</span><strong>Presión alta</strong><small>Recuperar arriba, aunque cueste energía.</small></button>
+        </div>
+        <button id="kickoff-button" class="primary-button" type="button"><span>Empezar el partido</span><span class="button-arrow">↗</span></button>
+      </section>
+
+      <section id="game-layout" class="game-layout hidden">
+        <div class="main-column">
+          <div class="live-strip"><div><span class="live-pulse"></span><span id="live-label">PARTIDO EN JUEGO</span></div><span id="possession-label">POSESIÓN —</span></div>
+          <div class="pitch-card">
+            <div class="pitch-label"><span>MAPA DE JUEGO</span><span id="zone-label">—</span></div>
+            <div class="mini-pitch" aria-label="Representación esquemática de la zona de juego"><div class="pitch-half"></div><div class="pitch-midline"></div><div class="pitch-circle"></div><div class="pitch-box left-box"></div><div class="pitch-box right-box"></div><div id="ball-marker" class="ball-marker"><span>●</span></div><span class="pitch-end left-end">DEFENSA</span><span class="pitch-end right-end">ATAQUE</span></div>
+          </div>
+          <div class="feed-heading"><div><p class="eyebrow">RELATO EN DIRECTO</p><h2>Lo que pasa en el campo</h2></div><button id="clear-feed" class="text-button" type="button">LIMPIAR</button></div>
+          <div id="decision-panel" class="decision-panel hidden" aria-live="assertive"></div>
+          <div id="commentary-feed" class="commentary-feed" aria-live="polite" aria-label="Relato del partido"></div>
+          <div class="match-controls" id="match-controls"><button id="advance-button" class="primary-button advance-button" type="button"><span>Jugar siguiente minuto</span><span class="button-arrow">▶</span></button><button id="quick-button" class="secondary-button" type="button">+ 5 min</button></div>
+        </div>
+        <aside class="side-column">
+          <section class="side-card tactics-live"><div class="side-heading"><div><p class="eyebrow">DESDE EL BANQUILLO</p><h3>Plan de juego</h3></div><span class="tactic-live-badge" id="current-tactic-name">EQUILIBRADO</span></div><p class="side-description">Elige cómo quieres que juegue el equipo. El cambio se aplica a la siguiente posesión.</p><div class="live-tactic-list" id="live-tactic-list">
+            <button data-tactic="balanced" type="button"><span>Equilibrado</span><i>●</i></button><button data-tactic="possession" type="button"><span>Posesión</span><i>●</i></button><button data-tactic="counter" type="button"><span>Contraataque</span><i>●</i></button><button data-tactic="press" type="button"><span>Presión alta</span><i>●</i></button>
+          </div><div class="energy-wrap"><div><span>ENERGÍA DEL EQUIPO</span><b id="energy-value">100%</b></div><div class="energy-track"><span id="energy-bar"></span></div></div></section>
+          <section class="side-card stats-card"><div class="side-heading"><div><p class="eyebrow">DATOS DEL PARTIDO</p><h3>Estadísticas</h3></div></div><div class="stat-table" id="stat-table"></div></section>
+          <section class="side-card key-players"><div class="side-heading"><div><p class="eyebrow">ONCE INICIAL</p><h3>Jugadores clave</h3></div></div><div id="players-list" class="players-list"></div></section>
+        </aside>
+      </section>
+      <section id="fulltime-panel" class="fulltime-panel hidden"></section>
+      <footer class="page-footer"><span>FÚTBOL, SIN GUIÓN.</span><span>LOS PARTIDOS SE DECIDEN CON DATOS Y UN POCO DE AZAR.</span><button id="new-match" type="button">NUEVO PARTIDO ↗</button></footer>
+    </main>
+  </div>
+  <script src="game.js"></script>
+</body>
+</html>

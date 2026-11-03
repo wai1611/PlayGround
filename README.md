@@ -16,3 +16,9 @@
 - 👤 [Explore the creator's projects](https://omgithub.com/wai1611).
 - 🌍 [Create with OMGithub](https://omgithub.com).
 <!-- omgithub:readme:end -->
+
+## 90 minutos
+
+Simulador de partidos de fútbol en español. Elige uno de cuatro clubes, prepara el enfoque táctico y juega el encuentro minuto a minuto. Cuando tu equipo llega al último tercio, decide entre filtrar un pase, centrar, encarar o disparar. Cambia el plan desde el banquillo y consulta posesión, remates, pases, faltas, tarjetas y goles esperados.
+
+Abre `index.html` en un navegador o inicia el servidor del entorno con `./start.sh`.
